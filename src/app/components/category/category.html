@@ -1,5 +1,12 @@
+<app-alert [alertTitle]="'Error'" [alertSubTitle]="alertMesaage"></app-alert>
+<br>
+<app-progress-bar [progressWidth]="90"></app-progress-bar>
+<br>
+    <app-tabs [tabList]="myTabList"></app-tabs>
+<br>
 <div class="row">
     <div class="col-8">
+
         <div class="card">
             <div class="card-header bg-success">
                 Category List
@@ -49,7 +56,8 @@
                         <div class="col-6">
                             <label for="">Category Name</label>
                             <input type="text" formControlName="categoryName" class="form-control">
-                            @if (categoryForm.controls['categoryName'].touched || categoryForm.controls['categoryName'].dirty) {
+                            @if (categoryForm.controls['categoryName'].touched ||
+                            categoryForm.controls['categoryName'].dirty) {
                             <div class="text-danger">
                                 @if (categoryForm.controls['categoryName'].errors?.['required']) {
                                 <span>This is Required</span>
@@ -72,7 +80,8 @@
                         </div>
                         <div class="col-6 text-center">
 
-                            <button class="btn btn-success" [disabled]="categoryForm.invalid" (click)="onSaveCetegory()">Save Category</button>
+                            <button class="btn btn-success" [disabled]="categoryForm.invalid"
+                                (click)="onSaveCetegory()">Save Category</button>
 
                         </div>
                     </div>

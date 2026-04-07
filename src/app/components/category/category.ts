@@ -1,15 +1,21 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserService } from '../../services/user-service';
+import { Alert } from "../../reusable/alert/alert";
+import { ProgressBar } from "../../reusable/progress-bar/progress-bar";
+import { Tabs } from "../../reusable/tabs/tabs";
 
 @Component({
   selector: 'app-category',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, Alert, ProgressBar, Tabs],
   templateUrl: './category.html',
   styleUrl: './category.css',
 })
 export class Category implements OnInit {
 
+  alertMesaage: string = "This is from Category Page";
+  
+  myTabList: string []= ["Basic Salary", "NPS", "PF","Dedcutions"]
 
   categoryForm: FormGroup = new FormGroup({
     categoryId: new FormControl(0),

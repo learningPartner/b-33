@@ -1,6 +1,9 @@
 import { DatePipe, JsonPipe, KeyValuePipe, LowerCasePipe, NgFor, SlicePipe, TitleCasePipe, UpperCasePipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Alert } from "../../reusable/alert/alert";
+import { ProgressBar } from "../../reusable/progress-bar/progress-bar";
+import { Tabs } from "../../reusable/tabs/tabs";
 
 const pipeImports = [
    LowerCasePipe,
@@ -10,7 +13,7 @@ const pipeImports = [
 
 @Component({
   selector: 'app-data-binding',
-  imports: [FormsModule, pipeImports],
+  imports: [FormsModule, pipeImports, Alert, ProgressBar, Tabs],
   templateUrl: './data-binding.html',
   styleUrl: './data-binding.css',
 })
