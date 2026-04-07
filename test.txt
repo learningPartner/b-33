@@ -1,0 +1,280 @@
+JavaScript (Explain + Show Code)
+1. Closure
+=>  Function remembers its outer scope even after execution
+function outer() {
+  let count = 0;
+
+  return function inner() {
+    count++;
+    console.log(count);
+  };
+}
+const fn = outer();
+fn(); // 1
+fn(); // 2
+
+function outer2() {
+  let count = 0; 
+ function inner() { 
+    console.log(count);
+  };
+  inner()
+}
+outer2()
+
+Closure means function + its lexical environment
+
+2. Hoisting
+
+=>  Variables/functions moved to top of scope
+=> Before Initialization we can access varioable declared with var and normal fun we can invoke
+=> let and const and Arrow Fun doesn't support Hoistings
+console.log(a); // undefined
+var a = 10;
+
+// let/const → ReferenceError
+
+3. var vs let vs const
+var a = 1; // function scope
+let b = 2; // block scope
+const c = 3; // cannot reassign
+4. Arrow vs Normal Function
+const obj = {
+  name: "Chetan",
+  normal: function () {
+    console.log(this.name);
+  },
+  arrow: () => {
+    console.log(this.name); // undefined
+  }
+};
+
+Arrow → no this
+Normal → has this
+
+5. Promise vs Callback
+// Callback
+function printMessage(message) {
+    console.log(message)
+}
+
+function getSum(fun) {
+    var result =  12+12;
+    fun("Addition is "+ result)
+}
+getSum(printMessage)
+
+
+// Promise
+new Promise((resolve) => resolve("Completed"))
+  .then(data => console.log(data));
+
+6. Event Bubbling & Capturing
+
+div.addEventListener("click", () => console.log("DIV"));
+button.addEventListener("click", () => console.log("BUTTON"));
+
+=>  Click button → BUTTON → DIV (Bubbling)
+
+7. Event Delegation
+
+document.getElementById("list").addEventListener("click", (e) => {
+  if (e.target.tagName === "LI") {
+    console.log(e.target.innerText);
+  }
+});
+
+8. Ways to Create Array
+
+let a = [1,2,3];
+let b = new Array(1,2,3);
+let c = Array.from("123");
+
+9. Object Keys
+
+const obj = { name: "Chetan", age: 25 };
+console.log(Object.keys(obj)); // ['name','age']
+
+**************************************************
+CSS Questions
+1. Box Model
+
+=>  content + padding + border + margin
+
+div {
+  width: 200px;
+  padding: 10px;
+  border: 5px solid black;
+}
+
+2. display:none vs visibility:hidden
+display: none;      /* removed from layout */
+visibility: hidden; /* space remains */
+
+
+3. Media Queries
+@media (max-width: 768px) {
+  body {
+    background: red;
+  }
+}
+
+
+4. Responsive Page
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+5. Pseudo Class
+button:hover {
+  background: blue;
+}
+
+**********************************************
+
+ Angular Questions
+1. Directive vs Component
+@Component({
+  selector: 'app-demo',
+  template: `<h1>Hello</h1>`
+})
+export class DemoComponent {}
+@Directive({
+  selector: '[appHighlight]'
+})
+export class HighlightDirective {}
+
+2. Module vs Standalone
+@Component({
+  standalone: true,
+  selector: 'app-demo',
+  template: `<h1>Standalone</h1>`
+})
+export class DemoComponent {}
+
+Angular 15+ → modules optional
+
+3. Data Binding
+<!-- Interpolation -->
+{{name}}
+
+<!-- Property -->
+<input [value]="name">
+
+<!-- Event -->
+<button (click)="clickFn()">
+
+<!-- Two-way -->
+<input [(ngModel)]="name">
+
+4. Reactive Forms
+
+form = new FormGroup({
+  name: new FormControl('')
+});
+
+
+5. Service
+@Injectable({ providedIn: 'root' })
+export class ApiService {
+  getData() {
+    return ['A', 'B'];
+  }
+}
+
+6. Dependency Injection
+
+constructor(private api: ApiService) {} //Old Way
+
+http = inject(HttpClient); //New Way from 16+
+
+
+7. Routing + Wildcard
+
+{ path: '', redirectTo: 'home',pathMatch:'' }
+{ path: 'home', component: HomeComponent }
+{ path: '**', component: NotFoundComponent }
+
+8. router-outlet
+
+<router-outlet></router-outlet>
+
+=>  Yes, multiple allowed (child routes)
+
+9. Lifecycle Hooks
+ngOnInit() {
+  console.log("Init");
+}
+
+10. Lazy Loading
+{
+  path: 'admin',
+  loadChildren: () => import('./admin.module')
+    .then(m => m.AdminModule)
+}
+
+{
+  path: 'admin',
+  loadComponent: () => import('./admin.ts')
+    .then(m => m.AdminComponent)
+}
+
+11. Latest Angular Features (Short points for video)
+
+=>  Standalone components ||  Signals||  Improved performance
+=>  New control flow (@if, @for) ||  Hydration (SSR)
+
+12. API → Table (REAL INTERVIEW QUESTION)
+// service
+getEmployees() {
+  return this.http.get('/api/employees');
+}
+// component
+employees: any[] = [];
+
+ngOnInit() {
+  this.api.getEmployees().subscribe(data => {
+    this.employees = data;
+  });
+}
+<table>
+  <tr *ngFor="let emp of employees">
+    <td>{{emp.name}}</td>
+  </tr>
+</table>
+
+
+Service → API call → Subscribe → Bind to UI
+
+13. Custom Directive
+@Directive({
+  selector: '[appColor]'
+})
+export class ColorDirective {
+  constructor(el: ElementRef) {
+    el.nativeElement.style.color = 'red';
+  }
+}
+
+14. RxJS
+import { of } from 'rxjs';
+
+of(1,2,3).subscribe(console.log);
+
+=>  Operators:
+
+map
+filter
+switchMap
+15. Create Observable
+import { Observable } from 'rxjs';
+
+const obs = new Observable(observer => {
+  observer.next("Hello");
+  observer.complete();
+});
+
+obs.subscribe(data => console.log(data));
+

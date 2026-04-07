@@ -25,7 +25,11 @@
               }
             ],
             "styles": [
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
+            ],
+            "scripts": [
+
             ]
           },
           "configurations": {
@@ -59,7 +63,9 @@
               "buildTarget": "b-33:build:production"
             },
             "development": {
-              "buildTarget": "b-33:build:development"
+              "buildTarget": "b-33:build:development" ,
+              "host": "localhost",
+              "port": 4200
             }
           },
           "defaultConfiguration": "development"

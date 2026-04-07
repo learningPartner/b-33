@@ -1,0 +1,132 @@
+<div class="row">
+    <div class="col-3">
+        <div class="bg-danger p-3" *ngIf="isDiv1Visiable">
+            Div 1
+        </div>
+    </div>
+    <div class="col-3">
+        <select class="form-select" [(ngModel)]="selectedCast">
+            <option value="OBC">OBC</option>
+            <option value="SC_NT">SC_NT</option>
+            <option value="OTHER">OTHER</option>
+        </select> --{{selectedCast}} == {{selectedCast == 'OTHER'}}
+    </div>
+    <div class="col-3">
+        <input type="text" *ngIf="selectedCast == 'OTHER'" placeholder="Entyer Other Caste">
+    </div>
+    <div class="col-3">
+        <div class="p-3 bg-success" *ngIf="isActive">
+            Div 2
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-3">
+        @if (isDiv1Visiable) {
+        <div class="bg-danger p-3">
+            Div 1
+        </div>
+        } @else {
+        <p>Div Hidden</p>
+        }
+    </div>
+    <div class="col-3">
+        <select class="form-select" [(ngModel)]="selectedCast">
+            <option value="OBC">OBC</option>
+            <option value="SC_NT">SC_NT</option>
+            <option value="OTHER">OTHER</option>
+        </select>
+    </div>
+
+    <div class="col-3">
+        @if (selectedCast == 'OTHER') {
+        <input type="text" placeholder="Entyer Other Caste">
+        }
+    </div>
+
+    <div class="col-3">
+        @if (isActive) {
+        <div class="p-3 bg-success">
+            Div 2
+        </div>
+        }
+
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-3">
+        <button class="btn btn-success" (click)="onShowDiv1()">Show</button>
+        <button class="btn btn-danger" (click)="onHideDiv1()">Hide</button>
+    </div>
+    <div class="col-3">
+
+    </div>
+    <div class="col-3">
+
+    </div>
+    <div class="col-3">
+        <input type="checkbox" [(ngModel)]="isActive">
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-3">
+        <textarea [(ngModel)]="address" class="form-control"></textarea>
+    </div>
+    <div class="col-3">
+        <textarea [(ngModel)]="address" class="form-control"></textarea>
+    </div>
+    <div class="col-3">
+        <span class="text-success" *ngIf="isPinPresnt != null && isPinPresnt == true">Pin Is Present</span>
+        <span class="text-danger" *ngIf="isPinPresnt != null && isPinPresnt == false">Pin Is Not Present</span>
+    </div>
+    <div class="col-3">
+        <span class="text-success" *ngIf="isTextPresnet != '' && isTextPresnet == 'Yes'">Pin 2 Is Present</span>
+        <span class="text-danger" *ngIf="isTextPresnet != '' && isTextPresnet == 'No'">Pin 2 Is Not Present</span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-3">
+        <button [disabled]="address.length == 0">Save</button>
+    </div>
+    <div class="col-3">
+        <button (click)="onSearch()">Search pin </button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-3">
+        <input type="text" [(ngModel)]="studentMarks" max="100" placeholder="Marks Out of 100">
+    </div>
+    <div class="col-3">
+        <span *ngIf="studentMarks > 75">Student has A Grade</span>  
+        <!-- <h1>greater than 75</h1> -->
+        <span *ngIf="studentMarks > 60 && studentMarks <75">Student has B Grade</span>
+         <!-- <h1>greater than 60 less than 75</h1> -->
+        <span *ngIf="studentMarks > 45 && studentMarks <60">Student has C Grade</span>
+        <!-- <h1>greater than 45 less than 60</h1> -->
+        <span *ngIf="studentMarks < 45 ">Student has Failed</span>
+        <!-- <h1>less than 45</h1> -->
+    </div>
+    <div class="col-3">
+        @if (studentMarks > 75) {
+             <span>Student has A Grade</span>  
+        } @else if (studentMarks > 60 && studentMarks <75) {
+             <span>Student has B Grade</span>
+        } @else if (studentMarks > 45 && studentMarks <60) {
+            <span>Student has C Grade</span>
+        } @else {
+             <span>Student has Failed</span>
+        }
+       
+        <!-- <h1>greater than 75</h1> -->
+       
+         <!-- <h1>greater than 60 less than 75</h1> -->
+        
+        <!-- <h1>greater than 45 less than 60</h1> -->
+       
+        <!-- <h1>less than 45</h1> -->
+    </div>
+</div>

@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="row">
+        <div class="col-2">
+            {{courseName}}
+        </div>
+           <div class="col-2">
+            {{currentRollNo}}
+        </div>
+    </div>
+</div>
+<hr>
+
+<div class="container">
+    <div class="row">
+        <div class="col-2">
+            {{courseDuration()}}
+        </div>
+           <div class="col-2">
+            {{isBatchActive()}}
+        </div>
+        <div class="col-2">
+            <button (click)="onDurationChnage()" class="btn btn-success">Chnage Duration</button>
+        </div>
+        <div class="col-2">
+            <button (click)="setNewDurationChnage()" class="btn btn-success">Set Duration</button>
+        </div>
+        <div class="col-2">
+            {{cityList()}}
+            <ul>
+                @for (item of cityList(); track $index) {
+                    <li>{{item}}</li>
+                }
+            </ul>
+            <br>
+             <button (click)="addCity()" class="btn btn-success">Add City</button>
+             <button (click)="addMpCity()" class="btn btn-success">Add Mp Cities</button>
+        </div>
+        <div class="col-2">
+            {{studentObj().name}} - {{studentObj().city}}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,100 @@
+<div class="row">
+    <div class="col-3">
+        <div class="p-3" [ngClass]="divClassName">
+            Div 1 - {{divClassName}}
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="p-3" [ngClass]="isDiv2Active == true ? 'bg-success':'bg-danger'">
+            Div 2 - - {{isDiv2Active}}
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="p-3" [ngClass]="div3ClassName">
+            Div 3- {{div3ClassName}}
+        </div>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-3">
+        <div [class]="'p-3 ' + divClassName">
+            Div 1 - {{divClassName}}
+        </div>
+    </div>
+    <div class="col-3">
+        <div [class]="'p-3 ' + (isDiv2Active ? 'bg-success':'bg-danger') ">
+            Div 2 - - {{isDiv2Active}}
+        </div>
+    </div>
+    <div class="col-3">
+        <div [class]="'p-3 ' + div3ClassName">
+            Div 3- {{div3ClassName}}
+        </div>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-3">
+        <button class="btn btn-success" (click)="addDiv1Class('bg-success')">Green</button>
+        <button class="btn btn-danger" (click)="addDiv1Class('bg-danger')">Red</button>
+    </div>
+    <div class="col-3">
+        <input type="checkbox" [(ngModel)]="isDiv2Active">
+    </div>
+    <div class="col-3">
+        <input type="text" [(ngModel)]="div3ClassName">
+    </div>
+</div>
+
+<hr>
+<hr>
+<div class="row">
+    <div class="col-4">
+        @for (item of languageList; track $index) {
+        <button class="btn mx-2" [ngClass]="item.colorClassName">
+            {{item.langName}}
+        </button>
+        }
+    </div>
+    <div class="col-4">
+        @for (item of languageList; track $index) {
+        <button [class]="'btn mx-2 ' + item.colorClassName">
+            {{item.langName}}
+        </button>
+        }
+    </div>
+</div>
+
+<hr>
+
+<div class="row">
+    <div class="col-3">
+        <div class="p-3" [ngStyle]="{'background-color': div11BgColorName}"  >
+            Div 11 - {{div11BgColorName}}
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="p-3" [ngStyle]="{'background-color': isDiv2Active ? 'yellow':'orange'}"  >
+            Div 22 - - {{isDiv2Active}}
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="p-3" [ngStyle]="myCss" >
+            Div 33-  
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-3">
+        <button class="btn btn-success" (click)="addDiv11Color('green')">Green</button>
+        <button class="btn btn-danger" (click)="addDiv11Color('red')">Red</button>
+    </div>
+    <div class="col-3">
+        <input type="checkbox" [(ngModel)]="isDiv2Active">
+    </div>
+    <div class="col-3">
+        <input type="text" [(ngModel)]="div3ClassName">
+    </div>
+</div>

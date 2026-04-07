@@ -1,0 +1,165 @@
+<div class="row">
+    <div class="col-6 bg-success">
+        <h1>One-Way </h1>
+    </div>
+    <div class="col-6 bg-warning">
+        <h1>Two Way</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-6  bg-success">
+        <div class="row">
+            <div class="col-6">
+                From .ts to Html
+                <br>
+                <ul>
+                    <li>interpolation</li>
+                    <li>Property Binding</li>
+                </ul>
+            </div>
+            <div class="col-6">
+                From Html to .ts
+                <ul>
+                    <li>Event Binding</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 bg-warning">
+        <h1>Two Way</h1>
+        <h1>Using ngModel Directive</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-2">
+        <p> {{courseName}}</p> - LowerCAse {{courseName | lowercase}}
+    </div>
+    <div class="col-2">
+        <span> {{courseName}}</span>
+        <br>
+        upperCase  {{courseName | uppercase}}
+    </div>
+    <div class="col-2">
+        {{couserDescription}}
+        <br>
+       titlecase  {{couserDescription| titlecase}}
+    </div>
+    <div class="col-2">
+        <input type="text" value="{{courseDuration}}">
+    </div>
+    <div class="{{myClassName}}">
+        <input type="{{myInputType}}">
+    </div>
+</div>
+<div class="row">
+
+    <div class="col-2">
+        <input type="text" [minLength]="minChar" [maxLength]="maxCharAllowed">
+    </div>
+    <div [class]="myClassName">
+        <textarea value="{{courseName}}"></textarea>
+    </div>
+    <div class="col-3">
+        property Binding
+        <input type="text" [value]="courseName">
+    </div>
+    <div class="col-2">
+        yusing ngModel
+        <input type="text" [(ngModel)]="courseName">
+    </div>
+    <div class="col-2">
+        <button (click)="changeCourseName('Java')" class="btn btn-warning mx-2">Java</button>
+        <button (click)="changeCourseName('Angular')" class="btn btn-warning mx-2">Angular</button>
+        <button (click)="changeCourseName('Dpot Net')" class="btn btn-warning mx-2">Dpot Net</button>
+        <button (click)="changeCourseName('React')" class="btn btn-warning mx-2">React</button>
+    </div>
+</div>
+<hr>
+<hr>
+<div class="row">
+    <div class="col-2">
+        <button class="btn  btn-success" (click)="showWelcomeText()"> Shpw Alert</button>
+    </div>
+    <div class="col-3">
+        <button (click)="showMessage('Java')" class="btn btn-warning mx-2">Java</button>
+        <button (click)="showMessage('Angular')" class="btn btn-warning mx-2">Angular</button>
+        <button (click)="showMessage('Dpot Net')" class="btn btn-warning mx-2">Dpot Net</button>
+        <button (click)="showMessage('React')" class="btn btn-warning mx-2">React</button>
+    </div>
+    <div class="col-2">
+        <select (change)="onCityChanged()" [(ngModel)]="selectedCity">
+            <option>Pune</option>
+            <option>Mumbai</option>
+            <option>Jaipur</option>
+        </select>
+    </div>
+    <div class="col-2">
+        selectedCity => {{selectedCity}}
+    </div>
+    <div class="col-2">
+        <input type="text" [(ngModel)]="selectedCity">
+    </div>
+</div>
+
+<div class="bg-danger" (mouseleave)="onMouseLeftDiv()" (mouseenter)="onMouseENterDiv()"
+    style="width:200px;height: 200px;">
+
+</div>
+
+<div class="row">
+    <div class="col-2">
+        <input type="checkbox" [(ngModel)]="isActive">
+    </div>
+    <div class="col-2">
+        isActive => {{isActive}}
+    </div>
+</div>
+
+<hr>
+<hr>
+<div class="row">
+    <div class="col-3 p-3">
+        {{rollNoList}}
+        <br>
+        {{rollNoList| slice:2:5}} 
+        <br>
+        {{rollNoList| slice:3}} 
+        <br>
+         word => {{courseName |slice:0:2}}
+    </div>
+    <div class="col-5">
+        {{currenDate}}
+        <br>
+        {{currenDate | date}}
+        <br>
+        {{currenDate | date:'dd-MM-yyyy'}} ==  {{currenDate | date:'dd-MM-yy'}}
+         <br>
+        {{currenDate | date:'dd-MMM-yyyy'}} ==  {{currenDate | date:'dd-MMMM-yy'}}
+         <br>
+        {{currenDate | date:'dd/MM/yyyy'}} ==  {{currenDate | date:'dd/MM/yy'}}
+         <br>
+         {{currenDate|date:'HH:mm a'}}
+    </div>
+    <div class="col-3">
+            {{studentObj}}
+            <br>
+            {{studentObj | json}}
+    </div>
+</div>
+<div class="row">
+    <div class="col-3">
+
+    </div>
+    <div class="col-3">
+        <ul>
+            <li *ngFor="let item of employeeObj|keyvalue">
+                {{item.key}} => {{item.value}}
+            </li>
+        </ul>
+    </div>
+</div>
+
+<hr>
+<hr>
