@@ -1,0 +1,11 @@
+<ul>
+    @for (item of listOfItems; track $index) {
+        @if (isMultiple) {
+             <li [class]="checkIfItemSelected(item) ? 'bg-success':''" (click)="onSelectItem(item)">{{item}}</li>
+        } @else {
+             <li [class]="currentSelectedItem == item?'bg-success':''" (click)="onSelectItem(item)">{{item}}</li>
+        }
+       
+    }
+   
+</ul>

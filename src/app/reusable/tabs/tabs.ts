@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
  
 @Component({
   selector: 'app-tabs',
@@ -11,9 +11,13 @@ export class Tabs {
 
   @Input() tabList: string[]= [];
 
+  @Output() onTabChange = new EventEmitter<string>();
+
   selectedTab: string = '';
 
   onSelectTab(tabName: string) {
     this.selectedTab =  tabName;
+    debugger
+    this.onTabChange.emit(tabName);
   }
 }

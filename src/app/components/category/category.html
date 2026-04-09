@@ -2,10 +2,35 @@
 <br>
 <app-progress-bar [progressWidth]="90"></app-progress-bar>
 <br>
-    <app-tabs [tabList]="myTabList"></app-tabs>
+<app-tabs [tabList]="myTabList" (onTabChange)="getTabChange($event)"></app-tabs>
+<br>
 <br>
 <div class="row">
-    <div class="col-8">
+
+    <div class="col-3">
+        <app-my-button [btnType]="'primary'" (onBtnClick)="onSaveBtnClicked()" [btnText]="'Save User'"> </app-my-button>
+    </div>
+    <div class="col-3">
+        <app-my-button [btnType]="'secondary'" (onBtnClick)="onUpdateBtnClicked()" [btnText]="'Update User'"> </app-my-button>
+    </div>
+
+    <div class="col-3">
+        <app-my-list [isMultiple]="true" [listOfItems]="['Software Developlemnt','QA','Devops','Sales']"
+            (onItemSelect)="getSelecteItem($event)"
+        ></app-my-list>
+    </div>
+     <div class="col-3">
+        <app-my-list [isMultiple]="false" [listOfItems]="['Software Developlemnt','QA','Devops','Sales']"
+            (onItemSelect)="getSelecteItem($event)"
+        ></app-my-list>
+    </div>
+</div>
+<br>
+<app-my-image [height]="'200'" [wdith]="'100'" [imgSrc]="'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYv7N-6goJmz2ZsYor3PG71ISvdBnolGxPzw&s'"></app-my-image>
+<br>
+<div class="row">
+    @if (currentTab == 'Category List') {
+    <div class="col-12">
 
         <div class="card">
             <div class="card-header bg-success">
@@ -29,8 +54,8 @@
                             <td>{{item.isActive}}</td>
                             <td>{{item.password}}</td>
                             <td>
-
-                                <button (click)="onEdit(item)" class="btn btn-success">Edit</button>
+                                <app-my-button [btnType]="'primary'" [btnText]="'Edit'" (onBtnClick)="onEdit(item)"></app-my-button>
+                                 
                                 <!-- <button (click)="onEdit(item)" class="btn btn-success">Edit</button>
                                 <button (click)="onDeleteUser(item.userId)" class="btn btn-danger mx-2">Delete</button> -->
                             </td>
@@ -43,7 +68,8 @@
         </div>
 
     </div>
-    <div class="col-4">
+    } @else {
+    <div class="col-12">
         <div class="card">
             <div class="card-header bg-success">
                 New Category
@@ -90,4 +116,7 @@
             </div>
         </div>
     </div>
+    }
+
+
 </div>

@@ -4,18 +4,21 @@ import { UserService } from '../../services/user-service';
 import { Alert } from "../../reusable/alert/alert";
 import { ProgressBar } from "../../reusable/progress-bar/progress-bar";
 import { Tabs } from "../../reusable/tabs/tabs";
+import { MyButton } from "../../reusable/my-button/my-button";
+import { MyImage } from "../../reusable/my-image/my-image";
+import { MyList } from "../../reusable/my-list/my-list";
 
 @Component({
   selector: 'app-category',
-  imports: [ReactiveFormsModule, Alert, ProgressBar, Tabs],
+  imports: [ReactiveFormsModule, Alert, ProgressBar, Tabs, MyButton, MyImage, MyList],
   templateUrl: './category.html',
   styleUrl: './category.css',
 })
 export class Category implements OnInit {
 
   alertMesaage: string = "This is from Category Page";
-  
-  myTabList: string []= ["Basic Salary", "NPS", "PF","Dedcutions"]
+
+  myTabList: string []= ["Category List", "Category Form"]
 
   categoryForm: FormGroup = new FormGroup({
     categoryId: new FormControl(0),
@@ -26,6 +29,7 @@ export class Category implements OnInit {
   userSrv = inject(UserService);
 
   categoryList = signal<any>([]);
+  currentTab: string = 'Category List';
 
   newCategory: any = {
     "categoryId": 0,
@@ -37,12 +41,30 @@ export class Category implements OnInit {
     this.getAllVCategory();
   }
 
+  getTabChange(tabName: string) {
+    debugger;
+    this.currentTab =  tabName;
+  }
+
+  onSaveBtnClicked() {
+    debugger;
+  }
+
+  onUpdateBtnClicked() {
+    debugger;
+  }
+  
+  getSelecteItem(itemName: string | string[]) {
+    debugger;
+  }
+
   onEdit(data: any) {
     this.categoryForm = new FormGroup({
       categoryId: new FormControl(data.categoryId),
       categoryName: new FormControl(data.categoryName),
       isActive: new FormControl(data.isActive)
     })
+    this.currentTab = "Category Form"
   }
 
   getAllVCategory() {

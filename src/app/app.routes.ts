@@ -12,6 +12,7 @@ import { User } from './components/user/user';
 import { Category } from './components/category/category';
 import { Departments } from './components/departments/departments';
 import { ViewChildEx } from './components/view-child-ex/view-child-ex';
+import { RxjsEx } from './components/rxjs-ex/rxjs-ex';
 
 export const routes: Routes = [
 
@@ -23,6 +24,10 @@ export const routes: Routes = [
     {
         path: 'adminpage',
         component: Admin 
+    },
+    {
+        path: 'rxjs',
+        component: RxjsEx 
     },
     {
         path: 'data-binding',
