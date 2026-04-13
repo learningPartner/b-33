@@ -1,0 +1,75 @@
+<div class="row">
+    <div class="col-5 px-3 ml-1">
+        <form [formGroup]="userForm" >
+
+            <!-- Name -->
+            <div class="mb-1">
+                <label for="name" class="form-label">Name</label>
+                <input id="name" type="text" class="form-control" formControlName="name" placeholder="Enter name" />
+                <div class="text-danger" *ngIf="userForm.get('name')?.touched && userForm.get('name')?.invalid">
+                    Name is required
+                </div>
+            </div>
+
+            <!-- Email -->
+            <div class="mb-1">
+                <label for="email" class="form-label">Email</label>
+                <input id="email" type="email" class="form-control" formControlName="email" placeholder="Enter email" />
+                <div class="text-danger" *ngIf="userForm.get('email')?.touched && userForm.get('email')?.errors">
+                    <small *ngIf="userForm.get('email')?.errors?.['required']">
+                        Email is required
+                    </small>
+                    <small *ngIf="userForm.get('email')?.errors?.['email']">
+                        Invalid email format
+                    </small>
+                </div>
+            </div>
+
+            <!-- City -->
+            <div class="mb-1">
+                <label for="city" class="form-label">City</label>
+                <input id="city" type="text" class="form-control" formControlName="city" placeholder="Enter city" />
+            </div>
+
+            <!-- Checkbox -->
+            <div class="form-check mb-1">
+                <input id="isDocumentNeeded" type="checkbox" class="form-check-input"
+                    formControlName="isDocumentNeeded" />
+                <label for="isDocumentNeeded" class="form-check-label">
+                    Document Needed
+                </label>
+            </div>
+
+            <!-- Document Name -->
+            <div class="mb-1">
+                <label for="documentName" class="form-label">Document Name</label>
+                <input id="documentName" type="text" class="form-control" formControlName="documentName"
+                    placeholder="Enter document name" />
+                    <div class="text-danger" *ngIf="userForm.get('documentName')?.touched && userForm.get('documentName')?.errors">
+                    <small *ngIf="userForm.get('documentName')?.errors?.['required']">
+                        Document Name is required
+                    </small>
+                   
+                </div>
+            </div>
+
+            <!-- Document Number -->
+            <div class="mb-1">
+                <label for="documentNo" class="form-label">Document No</label>
+                <input id="documentNo" type="text" class="form-control" formControlName="documentNo"
+                    placeholder="Enter document number" />
+                    <div class="text-danger" *ngIf="userForm.get('documentNo')?.touched && userForm.get('documentNo')?.errors">
+                    <small *ngIf="userForm.get('documentNo')?.errors?.['required']">
+                        Document No is required
+                    </small>
+                    
+                </div>
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" class="btn btn-primary">
+                Submit
+            </button>
+        </form>
+    </div>
+</div>

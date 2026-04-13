@@ -59,11 +59,16 @@ export class Category implements OnInit {
   }
 
   onEdit(data: any) {
-    this.categoryForm = new FormGroup({
-      categoryId: new FormControl(data.categoryId),
-      categoryName: new FormControl(data.categoryName),
-      isActive: new FormControl(data.isActive)
-    })
+    // this.categoryForm = new FormGroup({
+    //   categoryId: new FormControl(data.categoryId),
+    //   categoryName: new FormControl(data.categoryName),
+    //   isActive: new FormControl(data.isActive)
+    // })
+
+    //this.categoryForm.patchValue({categoryId:111,categoryName:"TTETTEE"});
+
+    this.categoryForm.setValue({categoryId:111,categoryName:"sdsdsd",isActive: true})
+
     this.currentTab = "Category Form"
   }
 

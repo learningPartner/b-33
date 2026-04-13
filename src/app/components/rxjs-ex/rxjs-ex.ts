@@ -1,10 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { from, interval, Observable, of, Subject } from 'rxjs';
+import { UserService } from '../../services/user-service';
+import { ViewChildEx } from "../view-child-ex/view-child-ex";
 
 @Component({
   selector: 'app-rxjs-ex',
-  imports: [],
+  imports: [ViewChildEx],
   templateUrl: './rxjs-ex.html',
   styleUrl: './rxjs-ex.css',
 })
@@ -24,10 +26,26 @@ export class RxjsEx {
 
   $mySubject = new Subject<string>();
 
+  userSrv = inject(UserService);
 
+  isViewChildVisiable: boolean = false;
+
+
+  showViewChild() {
+    this.isViewChildVisiable =  true
+  }
   constructor() {
+
+    this.userSrv.onSearchTextSubject.subscribe((res:string)=>{
+      debugger;
+    })
+    this.userSrv.onSearchBehviouSub.subscribe((res:string)=>{
+      debugger;
+    })
+
+    this.getBanklOanApp();
     const myPromise = new Promise((Resolve, reject) => {
-      reject("Error from promise")
+      Resolve("Error from promise")
     });
     myPromise.then((res: any) => {
       console.log(res)
@@ -51,13 +69,13 @@ export class RxjsEx {
     //wrote
 
     this.$stateList.subscribe((res: string[]) => {
-      //debugger;
+      //
     })
     this.studentObj.subscribe(res => {
-      // debugger;
+      // 
     })
     this.$rollNoList.subscribe(res => {
-      //debugger;
+      //
     })
 
     this.$myInterval.subscribe(res => {
@@ -79,9 +97,21 @@ export class RxjsEx {
     this.readSub();
   }
 
+  getBanklOanApp(){
+    this.userSrv.getAllApplictions().subscribe({
+      next:(res)=>{
+        
+      }
+    })
+    this.userSrv.getAllApplictionsForDropdownOld().subscribe({
+      next:(res)=>{
+        
+      }
+    })
+  }
+
   readSub() {
-    this.$mySubject.subscribe(res => {
-      debugger;
+    this.$mySubject.subscribe(res => { 
     })
   }
 

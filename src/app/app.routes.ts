@@ -13,6 +13,8 @@ import { Category } from './components/category/category';
 import { Departments } from './components/departments/departments';
 import { ViewChildEx } from './components/view-child-ex/view-child-ex';
 import { RxjsEx } from './components/rxjs-ex/rxjs-ex';
+import { ReactiveFormAdv } from './components/reactive-form-adv/reactive-form-adv';
+import { UserForm } from './components/user-form/user-form';
 
 export const routes: Routes = [
 
@@ -23,11 +25,15 @@ export const routes: Routes = [
     },
     {
         path: 'adminpage',
-        component: Admin 
+        component: Admin
     },
     {
         path: 'rxjs',
-        component: RxjsEx 
+        component: RxjsEx
+    },
+    {
+        path: 'reactiive-form-adv',
+        component: ReactiveFormAdv
     },
     {
         path: 'data-binding',
@@ -69,14 +75,18 @@ export const routes: Routes = [
         path: 'signal',
         component: Signal
     },
-     {
+    {
         path: 'users',
         component: User
     },
     {
-        path: '**',
-        component: NotFound
-    }
+        path: 'userform/:id',
+        component: UserForm
+    },
+    // {
+    //     path: '**',
+    //     component: NotFound
+    // }
 
 ];
 

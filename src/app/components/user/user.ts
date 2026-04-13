@@ -3,10 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { UserService } from '../../services/user-service';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-user',
-  imports: [FormsModule, JsonPipe],
+  imports: [FormsModule, JsonPipe,RouterLink],
   templateUrl: './user.html',
   styleUrl: './user.css',
 })
@@ -17,6 +18,7 @@ export class User implements OnInit{
 
   userService = inject(UserService);
 
+  router =  inject(Router);
    
 
   userList = signal<any>([]);
@@ -48,9 +50,11 @@ export class User implements OnInit{
     };
   }
 
-  onEdit(data: any) {
+  onEdit(id: any) {
     debugger;
-    this.newUserObj = data;
+    //this.router.navigateByUrl('/userform/'+id)
+    this.router.navigate(['/userform',id])
+   // this.newUserObj = data;
   }
 
   getUsers() {

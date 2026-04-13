@@ -1,5 +1,6 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, ViewChildren } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, inject, OnInit, ViewChild, ViewChildren } from '@angular/core';
 import { Signal } from '../signal/signal';
+import { UserService } from '../../services/user-service';
 
 @Component({
   selector: 'app-view-child-ex',
@@ -14,19 +15,27 @@ export class ViewChildEx implements OnInit,AfterViewInit {
 
   @ViewChild(Signal)  siganEx!: Signal;
 
+  userSrv = inject(UserService);
+
   ngOnInit(): void {
-    debugger;
+    
+    this.userSrv.onSearchTextSubject.subscribe((res:string)=>{
+      debugger;
+    })
+    this.userSrv.onSearchBehviouSub.subscribe((res:string)=>{
+      debugger;
+    })
     //const tsxtval =  this.myTextElement.nativeElement.value;
   }
 
   ngAfterViewInit(): void {
-    debugger;
+    
     const tsxtval =  this.myTextElement.nativeElement.value;
   }
  
   readText() {
     const textValeu = this.myTextElement.nativeElement.value;
-    debugger;
+    
   }
 
   addCss(){
@@ -35,6 +44,6 @@ export class ViewChildEx implements OnInit,AfterViewInit {
 
   readSignal() {
     const coruse =  this.siganEx.courseName;
-    debugger;
+    
   }
 }
