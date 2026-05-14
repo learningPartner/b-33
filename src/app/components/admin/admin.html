@@ -1,10 +1,109 @@
 <p>admin works!</p>
 
-<input type="text" placeholder="ENter Name">
-<button>Save User</button>
 
-<a routerLink="/dataTypes"> Nabigate to Data Types</a>
 
-<app-user></app-user>
+<div class="row">
+    <div class="col-6">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Sr No</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Attendance</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngIf="isApiInPogress()">
+                    <td colspan="5"> Loading</td>
+                </tr>
+                <ng-container *ngIf="!isApiInPogress()">
+                    <tr *ngFor="let stud of studentList();let srno = index;">
+                        <td>{{srno +1}} </td>
+                        <td>{{stud.name}}</td>
+                        <td>{{stud.email}}</td>
+                        <td>{{stud.city}}</td>
+                        <td>{{stud.state}} </td>
+                        <td>
+                            <span *ngIf="stud.isActive else temDeactive">Student Is Active</span>
+                            <ng-template #temDeactive>
+                                <strong>Student Is Inactive</strong>
+                            </ng-template>
+                        </td>
+                    </tr>
+                </ng-container>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-6">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Sr No</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>City</th>
+                    <th>State</th>
+                </tr>
+            </thead>
+            <tbody>
+                <ng-container *ngIf="studentList().length !== 0 else noRecordFoundTemp">
+                    @for (stud of studentList(); track $index; let isFirst = $first; let isLast = $last; let isEVen=
+                    $even, let isOdd =$odd) {
+                    <tr>
+                        <td>{{$index +1}} -- {{isEVen}}</td>
+                        <td>{{stud.name}}</td>
+                        <td>{{stud.email}}</td>
+                        <td>{{stud.city}}</td>
+                        <td>{{stud.state}} - {{isFirst}} + {{isLast}}</td>
+                    </tr>
+                    }
+                </ng-container>
 
- 
+            </tbody>
+        </table>
+    </div>
+    <div class="col-6">
+        <div class="col-6">
+
+            <ng-container
+                *ngTemplateOutlet="tempLabel; context: {title: 'Enter User Name', iconClass: 'fa fa-user', label: 'UserName'}">
+            </ng-container>
+            <input type="text" name="userName" class="form-control">
+        </div>
+        <div class="col-6">
+            <ng-container
+                *ngTemplateOutlet="tempLabel; context: {title: 'Enter password', iconClass: 'fa fa-lock', label: 'Password'}">
+            </ng-container>
+            <input type="text" name="password" class="form-control">
+        </div>
+        <div class="col-6">
+            <ng-container
+                *ngTemplateOutlet="tempLabel; context: {title: 'Enter city', iconClass: 'fa fa-phone', label: 'City'}">
+            </ng-container>
+            <input type="text" name="city" class="form-control">
+        </div>
+        <div class="col-6">
+            <ng-container
+                *ngTemplateOutlet="tempLabel; context: {title: 'Enter state', iconClass: 'fa fa-user', label: 'State'}">
+            </ng-container>
+            <input type="text" name="state" class="form-control">
+        </div>
+    </div>
+</div>
+
+<ng-template #tempLabel let-t="title" let-i="iconClass" let-l="label">
+    <label [title]="t">
+        <i [ngClass]="i"></i>
+        {{ l }}
+    </label>
+</ng-template>
+
+<ng-template #noRecordFoundTemp>
+    <tr>
+        <td colspan="5">No Record Found</td>
+    </tr>
+</ng-template>

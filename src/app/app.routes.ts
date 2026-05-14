@@ -15,6 +15,7 @@ import { ViewChildEx } from './components/view-child-ex/view-child-ex';
 import { RxjsEx } from './components/rxjs-ex/rxjs-ex';
 import { ReactiveFormAdv } from './components/reactive-form-adv/reactive-form-adv';
 import { UserForm } from './components/user-form/user-form';
+import { Rxjs2 } from './components/rxjs2/rxjs2';
 
 export const routes: Routes = [
 
@@ -30,6 +31,10 @@ export const routes: Routes = [
     {
         path: 'rxjs',
         component: RxjsEx
+    },
+    {
+        path: 'rxjsadv',
+        component: Rxjs2
     },
     {
         path: 'reactiive-form-adv',
