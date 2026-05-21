@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="col-12 text-center" >
+        <div class="btn-group">
+            @for (tab of tabList; track $index) {
+                <button type="button" [ngClass]="tabName == tab ?'btn-success':'btn-primary'" class="btn " 
+                (click)="setSelectedTab(tab)">{{tab}}</button>
+            } 
+        </div>
+    </div>
+</div> 
+
+@if(tabName == 'Plan Selection') {
+    <app-plan-selection></app-plan-selection>
+} @else if (tabName == 'Movie Booking') {
+    <app-movie-bookign></app-movie-bookign>
+} @else if (tabName == 'Grosary Shopping') {
+   <app-grosary-list></app-grosary-list>
+}
+
+
+
+

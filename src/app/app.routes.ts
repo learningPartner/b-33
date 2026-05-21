@@ -16,77 +16,93 @@ import { RxjsEx } from './components/rxjs-ex/rxjs-ex';
 import { ReactiveFormAdv } from './components/reactive-form-adv/reactive-form-adv';
 import { UserForm } from './components/user-form/user-form';
 import { Rxjs2 } from './components/rxjs2/rxjs2';
+import { Logic } from './components/logic/logic';
+import { Login } from './components/login/login';
+import { AdminLayout } from './components/admin-layout/admin-layout';
+import { authGuard } from './guards/auth-guard';
+import { roleBasedGuard } from './guards/role-based-guard';
 
 export const routes: Routes = [
 
     {
         path: '',
-        redirectTo: 'data-binding',
+        component: Login,
         pathMatch: 'full'
     },
     {
-        path: 'adminpage',
-        component: Admin
-    },
-    {
-        path: 'rxjs',
-        component: RxjsEx
-    },
-    {
-        path: 'rxjsadv',
-        component: Rxjs2
-    },
-    {
-        path: 'reactiive-form-adv',
-        component: ReactiveFormAdv
-    },
-    {
-        path: 'data-binding',
-        component: DataBinding
-    },
-    {
-        path: 'category',
-        component: Category
-    },
-    {
-        path: 'viewchildex',
-        component: ViewChildEx
-    },
-    {
-        path: 'dataTypes',
-        component: DataTypes
-    },
-    {
-        path: 'departments',
-        component: Departments
-    },
-    {
-        path: 'hideshow',
-        component: HideShowNgIf
-    },
-    {
-        path: 'ngfor',
-        component: NgForLoop
-    },
-    {
-        path: 'get-api',
-        component: GetAPI
-    },
-    {
-        path: 'att-Dir',
-        component: AttDirective
-    },
-    {
-        path: 'signal',
-        component: Signal
-    },
-    {
-        path: 'users',
-        component: User
-    },
-    {
-        path: 'userform/:id',
-        component: UserForm
+        path: '',
+        component: AdminLayout,
+        canActivate: [authGuard,roleBasedGuard],
+        children: [
+            {
+                path: 'adminpage',
+                component: Admin
+            },
+            {
+                path: 'rxjs',
+                component: RxjsEx
+            },
+            {
+                path: 'rxjsadv',
+                component: Rxjs2
+            },
+            {
+                path: 'reactiive-form-adv',
+                component: ReactiveFormAdv
+            },
+            {
+                path: 'data-binding',
+                component: DataBinding
+            },
+            {
+                path: 'category',
+                component: Category
+            },
+            {
+                path: 'logic',
+                component: Logic
+            },
+            {
+                path: 'viewchildex',
+                component: ViewChildEx
+            },
+            {
+                path: 'dataTypes',
+                component: DataTypes
+            },
+            {
+                path: 'departments',
+                component: Departments
+            },
+            {
+                path: 'hideshow',
+                component: HideShowNgIf
+            },
+            {
+                path: 'ngfor',
+                component: NgForLoop
+            },
+            {
+                path: 'get-api',
+                component: GetAPI
+            },
+            {
+                path: 'att-Dir',
+                component: AttDirective
+            },
+            {
+                path: 'signal',
+                component: Signal
+            },
+            {
+                path: 'users',
+                component: User
+            },
+            {
+                path: 'userform/:id',
+                component: UserForm
+            },
+        ]
     },
     // {
     //     path: '**',

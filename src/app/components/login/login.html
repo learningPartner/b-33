@@ -1,0 +1,48 @@
+<main class="login-page">
+  <section class="login-panel shadow">
+    <div class="text-center mb-4">
+      <span class="badge text-bg-primary mb-3">Admin App</span>
+      <h1 class="h3 fw-bold mb-1">Login</h1>
+      <p class="text-secondary mb-0">Use your role and hardcoded user code.</p>
+    </div>
+
+    <form (ngSubmit)="onLogin()"> 
+      <div class="mb-3">
+        <label for="userCode" class="form-label fw-semibold">User Code</label>
+        <input
+          id="userCode"
+          name="userCode"
+          type="password"
+          class="form-control"
+          placeholder="Enter user code"
+          [(ngModel)]="userCode"
+        />
+      </div>
+       <div class="mb-3">
+        <label for="userCode" class="form-label fw-semibold">User Code</label>
+        <input
+          id="userCode"
+          name="userCode"
+          type="password"
+          class="form-control"
+          placeholder="Enter user code"
+          [(ngModel)]="password"
+        />
+      </div>
+
+      @if (loginError) {
+        <div class="alert alert-danger py-2" role="alert">
+          {{ loginError }}
+        </div>
+      }
+
+      <button type="submit" class="btn btn-primary w-100">Login</button>
+    </form>
+
+    <div class="border-top mt-4 pt-3 small text-secondary">
+      <div>Employee: EMP001</div>
+      <div>superAdmin: ADMIN001</div>
+      <div>Guest: GUEST001</div>
+    </div>
+  </section>
+</main>

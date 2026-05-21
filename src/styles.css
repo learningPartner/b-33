@@ -2,3 +2,13 @@
 .primary {
     color: red;
 }
+
+.disabled-style, 
+[disabled],
+[readonly] {
+  opacity: 0.6;                 /* Fades out the element */
+  cursor: not-allowed;          /* Shows a "blocked" cursor */
+  pointer-events: none;         /* Blocks mouse clicks, hovers, and selections */
+  user-select: none;            /* Prevents text highlighting */
+  background-color: #f5f5f5;    /* Gives it a greyed-out background */
+}

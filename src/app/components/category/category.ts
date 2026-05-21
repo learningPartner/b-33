@@ -7,10 +7,11 @@ import { Tabs } from "../../reusable/tabs/tabs";
 import { MyButton } from "../../reusable/my-button/my-button";
 import { MyImage } from "../../reusable/my-image/my-image";
 import { MyList } from "../../reusable/my-list/my-list";
+import { DisbaleForGuest } from '../../directives/disbale-for-guest';
 
 @Component({
   selector: 'app-category',
-  imports: [ReactiveFormsModule, Alert, ProgressBar, Tabs, MyButton, MyImage, MyList],
+  imports: [ReactiveFormsModule, Alert, ProgressBar, Tabs, MyButton, MyImage, MyList, DisbaleForGuest],
   templateUrl: './category.html',
   styleUrl: './category.css',
 })

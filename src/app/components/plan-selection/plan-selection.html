@@ -1,0 +1,30 @@
+<div class="task-container">
+    <div class="task-heading">Task 1</div>
+    <!-- <div class="myBox"> -->
+    <div class="text-center pb-5">
+        <h3> Package</h3>
+        <h6>JavaScript, Angular, Reactjs</h6>
+    </div>
+    <div class="row text-center pb-3">
+        @for (item of planList; track $index) {
+        <div class="col">
+            <div>
+                <i class="fonticon" [ngClass]="item.icon" aria-hidden="true"></i><br>
+                {{item.planName}}
+            </div>
+            <button [ngClass]="item.planName == selectedPlan?.planName ?'btn-warning':'btn-primary'"
+                class="btn btn-sm  mt-4 btnfont" id="btnMobile" (click)="onSlectPlan(item)">Find
+                More</button>
+        </div>
+        }
+    </div>
+    <div class="row pt-2">
+        <div class="col-12">
+            <div class="text-center">
+                <!-- {{selectedPlan?.planInfo}} -->
+                {{selectedPlan ? selectedPlan.planInfo: 'No Plan Slected Yet'}}
+            </div>
+        </div>
+    </div>
+
+</div>
