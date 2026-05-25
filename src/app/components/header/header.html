@@ -10,9 +10,7 @@
           <li class="nav-item">
           <a class="nav-link" [routerLink]="item.routeName">{{item.lable}}</a>
         </li>
-        }
-        
-        
+        } 
       </ul>
       <form class="d-flex align-items-center gap-2">
         <span class="badge text-bg-light">{{ authService.loggedInRole() }}</span>
@@ -22,6 +20,4 @@
       </form>
     </div>
   </div>
-</nav>
-
-<router-outlet></router-outlet>
+</nav> 

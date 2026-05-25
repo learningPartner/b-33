@@ -1,0 +1,204 @@
+<div class="container-fluid py-4 bg-light min-vh-100">
+    <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3 mb-4">
+        <div>
+            <span class="badge text-bg-primary mb-2">Employee Management</span>
+            <h2 class="mb-1">Employee List</h2>
+            <p class="text-secondary mb-0">View employee contact, address, identity, and project details in one place.
+            </p>
+        </div>
+        <div class="d-flex gap-2">
+            <button class="btn btn-outline-secondary" type="button">
+                Export
+            </button>
+            <button class="btn btn-primary" type="button">
+                Add Employee
+            </button>
+        </div>
+    </div>
+
+
+
+    <div class="row g-4">
+        <div class="col-12 col-xl-8">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-0 py-3">
+                    <div class="row g-3 align-items-center">
+                        <div class="col-12 col-lg-5">
+                            <h5 class="mb-0">Employees</h5>
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-4">
+                            <input type="text" class="form-control"  placeholder="Search by name, email, city">
+                        </div>
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <select class="form-select">
+                                <option selected>All project status</option>
+                                <option>On Project</option>
+                                <option>Available</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th scope="col">Employee</th>
+                                <th scope="col">Contact</th>
+                                <th scope="col">Location</th> 
+                                <th scope="col">Project</th>
+                                <th scope="col" class="text-end">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (item of employeeList(); track $index) {
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center fw-semibold"
+                                            style="width: 42px; height: 42px;">
+                                        {{item.fullName |slice:0:1}}
+                                        </div>
+                                        <div>
+                                            <div class="fw-semibold">{{item.fullName}}</div> 
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>{{item.email}}</div>
+                                    <div class="text-secondary small">{{item.mobileNo}}</div>
+                                </td>
+                                <td>
+                                    <div>{{item.state}} {{item.city}}</div> 
+                                </td> 
+                                <td>
+                                    <span class="badge text-bg-success mb-1">{{item.isOnProject ? item.projectName:'On Bench'}}</span> 
+                                </td>
+                                <td class="text-end">
+                                    <button class="btn btn-sm btn-outline-primary" type="button">View</button>
+                                    <button class="btn btn-sm btn-outline-secondary ms-1" type="button">Edit</button>
+                                    <button class="btn btn-sm btn-outline-danger ms-1" type="button">Delete</button>
+                                </td>
+                            </tr>
+                            }
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-xl-4">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white border-0 py-3">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Add / Edit Employee</h5>
+                        <span class="badge text-bg-primary">CRUD Form</span>
+                    </div>
+                </div>
+                <div class="card-body"> 
+                        <div class="mb-4">
+                            <div class="fw-semibold mb-2">Personal Details</div>
+                            <div class="row g-3"> 
+                                <div class="col-12 col-md-6">
+                                    <label class="form-label">First Name</label>
+                                    <input type="text" class="form-control" #fname="ngModel" [(ngModel)]="newEmployeeObj.firstName"  value="string" placeholder="First name">
+                                    
+                                    @if (fname.touched || fname.dirty) {
+                                        <div class="text-danger">
+                                            @if (fname.errors?.['required']) {
+                                                  <span>This is Required</span>
+                                            }
+                                      
+                                        <span>Min 5 Char </span>
+
+                                    </div>
+                                    }
+                                    
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <label class="form-label">Middle Name</label>
+                                    <input type="text" class="form-control" [(ngModel)]="newEmployeeObj.middleName" value="string" placeholder="Middle name">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" [(ngModel)]="newEmployeeObj.lastName" value="string" placeholder="Last name">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label">PAN Card No</label>
+                                    <input type="text" class="form-control text-uppercase"   [(ngModel)]="newEmployeeObj.panCardNo"
+                                        placeholder="PAN card number">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="fw-semibold mb-2">Contact Details</div>
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <label class="form-label">Email</label>
+                                    <input type="email" class="form-control" [(ngModel)]="newEmployeeObj.email" value="user@example.com"
+                                        placeholder="user@example.com">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label">Mobile No</label>
+                                    <input type="tel" class="form-control" [(ngModel)]="newEmployeeObj.mobileNo" value="stringstri"
+                                        placeholder="Mobile number">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="fw-semibold mb-2">Address Details</div>
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <label class="form-label">Address Line 1</label>
+                                    <input type="text" class="form-control" [(ngModel)]="newEmployeeObj.addressLine1" value="string"
+                                        placeholder="Flat, building, street">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label">Address Line 2</label>
+                                    <input type="text" class="form-control" [(ngModel)]="newEmployeeObj.addressLine2" value="string"
+                                        placeholder="Area or landmark">
+                                </div>
+                                <div class="col-12 col-md-5">
+                                    <label class="form-label">City</label>
+                                    <input type="text" class="form-control" [(ngModel)]="newEmployeeObj.city" value="string" placeholder="City">
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <label class="form-label">State</label>
+                                    <input type="text" class="form-control" [(ngModel)]="newEmployeeObj.state" value="string" placeholder="State">
+                                </div>
+                                <div class="col-12 col-md-3">
+                                    <label class="form-label">PIN Code</label>
+                                    <input type="text" class="form-control" [(ngModel)]="newEmployeeObj.pinCode" value="string" placeholder="PIN">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="fw-semibold mb-2">Project Details</div>
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <label class="form-label">Project Status</label>
+                                     <input type="checkbox" [(ngModel)]="newEmployeeObj.isOnProject">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label">Project Name</label>
+                                    <input type="text" class="form-control" [(ngModel)]="newEmployeeObj.projectName" value="string" placeholder="Project name">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-primary" type="button" (click)="onSaveEmployee()"> Save Employee</button>
+                            <button class="btn btn-success" type="button">Update Employee</button>
+                            <button class="btn btn-outline-secondary" type="reset">Clear Form</button>
+                            <button class="btn btn-outline-danger" type="button">Delete Employee</button>
+                        </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

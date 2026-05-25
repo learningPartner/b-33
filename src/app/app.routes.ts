@@ -21,6 +21,8 @@ import { Login } from './components/login/login';
 import { AdminLayout } from './components/admin-layout/admin-layout';
 import { authGuard } from './guards/auth-guard';
 import { roleBasedGuard } from './guards/role-based-guard';
+import { EmployeeList } from './components/employee-list/employee-list';
+import { FormArrayExample } from './components/form-array/form-array';
 
 export const routes: Routes = [
 
@@ -32,7 +34,7 @@ export const routes: Routes = [
     {
         path: '',
         component: AdminLayout,
-        canActivate: [authGuard,roleBasedGuard],
+       // canActivate: [authGuard,roleBasedGuard],
         children: [
             {
                 path: 'adminpage',
@@ -41,6 +43,14 @@ export const routes: Routes = [
             {
                 path: 'rxjs',
                 component: RxjsEx
+            },
+             {
+                path: 'form-array',
+                component: FormArrayExample
+            },
+            {
+                path: 'employee',
+                component: EmployeeList
             },
             {
                 path: 'rxjsadv',
